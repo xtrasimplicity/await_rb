@@ -9,7 +9,6 @@ namespace :await do
     cmd_to_execute = ENV['AWAIT_CMD'].to_s
 
     abort 'A port must be specified.' if port.empty?
-    abort 'A command must be specified.' if cmd_to_execute.empty?
 
     Timeout::timeout(600) do
       puts "Waiting for #{host} to respond to TCP port #{port}..."
@@ -19,7 +18,14 @@ namespace :await do
         s.close
         
         puts "The service is listening! Running `#{cmd_to_execute}`..."
-        system cmd_to_execute
+        exit_code = 0
+
+        unless cmd_to_execute.empty?
+          exit_code = system(cmd_to_execute)
+        end
+
+
+        exit exit_code
       rescue Errno::ECONNREFUSED, Errno::EHOSTUNREACH
         retry
       end
