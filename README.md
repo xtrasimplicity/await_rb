@@ -1,4 +1,6 @@
 # Await-Rb
+[![Maintainability](https://api.codeclimate.com/v1/badges/bf4aa74f7f3c2661540f/maintainability)](https://codeclimate.com/github/xtrasimplicity/await_rb/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/bf4aa74f7f3c2661540f/test_coverage)](https://codeclimate.com/github/xtrasimplicity/await_rb/test_coverage)
 
 A simple Ruby gem to help ensure external dependencies are operational, when booting an application (or anything at all!).
 
@@ -22,11 +24,15 @@ Or install it yourself as:
 ## Usage
 Simply execute the Await-Rb rake task for the protocol you'd like to check, and then start your dependencies on successful completion. For example, if you want to make sure a MySQL server (e.g. `172.20.0.10`) is running before you run your Ruby/Rack/Sinatra application, you can run:
 
-`bundle exec rake await:tcp host=172.20.0.10 port=3306 && ruby -e "puts 'MySQL is listening.'"`
+```ruby
+bundle exec rake await:tcp host=172.20.0.10 port=3306 && ruby -e "puts 'MySQL is listening.'"
+```
 
 By default, Await-Rb will time out after `10 minutes` (`600 seconds`) if a connection cannot be established. To change this, simply pass a new value (in `seconds`), to the `timeout` environment variable. e.g.
 
-`bundle exec rake await:tcp host=172.20.0.10 port=3306 timeout=300 && ruby -e "puts 'Hello world!'"`
+```ruby
+bundle exec rake await:tcp host=172.20.0.10 port=3306 timeout=300 && ruby -e "puts 'Hello world!'"
+```
 
 ## Development
 
