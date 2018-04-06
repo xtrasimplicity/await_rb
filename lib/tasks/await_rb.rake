@@ -18,6 +18,7 @@ namespace :await do
           if AwaitRb::Protocol::TCP.active?(host, port)
             exit 0
           else
+            $stderr.puts "A connection to #{host} on port #{port} (TCP) could not be established."
             exit 1
           end
         rescue Errno::ECONNREFUSED, Errno::EHOSTUNREACH
