@@ -6,3 +6,7 @@
 /pkg/
 /spec/reports/
 /tmp/
+*.gem
+Gemfile.lock
+.ruby-version
+.byebug_history
