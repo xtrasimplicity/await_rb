@@ -2,10 +2,9 @@ module AwaitRb::Protocol
   module TCP
     require 'socket'
 
-    def self.active?(**args)
-      port = args[:port]
-      host = args[:host] || '127.0.0.1'
-
+    def self.active?(host, port)
+      host = host || '127.0.0.1'
+      
       raise 'A port must be supplied' if port.to_s.empty?
 
       begin
