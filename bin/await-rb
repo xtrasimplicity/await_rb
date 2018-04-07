@@ -1,0 +1,7 @@
+#!/usr/bin/env ruby
+file_name = File.join(File.dirname(__FILE__), '../lib')
+$:.unshift(file_name) unless $:.include?(file_name)
+
+require 'await_rb/cli/main'
+
+AwaitRb::Cli::Main.new.run!
