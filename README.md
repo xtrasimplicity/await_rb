@@ -22,7 +22,7 @@ Or install it yourself as:
     $ gem install await_rb
 
 ## Usage
-Simply execute the Await-Rb rake task for the protocol you'd like to check, and then start your dependencies on successful completion. For example, if you want to make sure a MySQL server (e.g. `172.20.0.10`) is running before you run your Ruby/Rack/Sinatra application, you can run:
+Simply execute the Await-Rb rake task for the protocol you'd like to check, and define the command you'd like to execute once the dependency has loaded. For example, if you want to make sure a MySQL server (e.g. `172.20.0.10`) is running before you run your Ruby/Rack/Sinatra application, you can run:
 
 ```ruby
 bundle exec rake await:tcp host=172.20.0.10 port=3306 && ruby -e "puts 'MySQL is listening.'"
@@ -33,6 +33,8 @@ By default, Await-Rb will time out after `10 minutes` (`600 seconds`) if a conne
 ```ruby
 bundle exec rake await:tcp host=172.20.0.10 port=3306 timeout=300 && ruby -e "puts 'Hello world!'"
 ```
+
+If the external dependency is running on the local machine, you can omit the `host` environment variable and it will automatically default to `127.0.0.1`
 
 ## Development
 
